@@ -1,5 +1,6 @@
 import gi
 import signal
+import os
 gi.require_version('Gtk' , '3.0')
 gi.require_version('AppIndicator3' , '0.1')
 from gi.repository import Gtk as gtk
@@ -32,14 +33,12 @@ def build_menu():
 
 def quit(source):
 	gtk.main_quit()
-'''
-def go360():
-	os.system("xinput float 14")
 
-def no_go360():
-	os.system("xinput reattach 14 3")  
+def go360(source):
+	os.system("xinput -disable 14")
 
-'''
+def no_go360(source):
+	os.system("xinput -enable 14")  
 	
 if __name__ == "__main__":
 	signal.signal(signal.SIGINT , signal.SIG_DFL)
